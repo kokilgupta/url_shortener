@@ -6,8 +6,7 @@ const HomePage=()=>{
     const[posts,setPosts]=useState([]);
     const[urls,setUrls]=useState("");
     const[isLoaded, setIsLoaded] = useState(false);
-    
-  
+
      const urlChangeHandler=(event)=>{
          setUrls(event.target.value);
      }
@@ -19,7 +18,20 @@ const HomePage=()=>{
                 user_id:"kokil"
             })
             .then((docRef) => {
-                console.log("Document written with ID: ", docRef.path);
+                //console.log("Document written with ID: ", docRef.path);
+                 const vari=docRef.path;
+                 const l=vari.length;
+                 const var2=vari.slice(4,l);
+                var docRef = db.collection("URL").doc(var2);
+                docRef.get().then((doc) => {
+                if (doc.exists) {
+                    setPosts(posts => [doc.data(), ...posts]);
+                } else {
+                console.log("No such document!");
+               }
+                }).catch((error) => {
+                console.log("Error getting document:", error);
+                });
             })
             .catch((error) => {
                 console.error("Error adding document: ", error);
@@ -28,11 +40,13 @@ const HomePage=()=>{
                 setUrls("");
             });
      }
+
      const pressEnterHandler=(k)=>{
         if(k.keyCode === 13){
             {onClickHandler()}
         }
     }
+
     useEffect(()=>{
         const fetchData = async  () => {
             const res = db.collection('URL');
@@ -49,7 +63,6 @@ const HomePage=()=>{
             <div>Loading...</div>
         )
     }
-
     return(
         <div>
             <input type="text" value={urls} placeholder="Enter your URL" onChange={urlChangeHandler}  onKeyDown={pressEnterHandler}/>
