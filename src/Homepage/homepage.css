@@ -18,6 +18,8 @@
     border: 1px solid black;
     width: 60%;
     margin: auto;
+    box-sizing: border-box;
+    margin-bottom: 60px;
 }
 .url-short-title{
     padding: 8px;
@@ -41,4 +43,32 @@
 }
 .shorten-url{
     cursor: pointer;
+}
+.list-parent{
+    width: 60%;
+    margin: auto;
+}
+.link_box{
+    padding: 8px;
+    border: 1px solid black;
+    display: flex;
+    /* padding:4px; */
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}
+.delete{
+    display: flex;
+    flex-direction: row-reverse;
+    /* justify-content: flex-end; */
+}
+.fa-times{
+    height: 22px;
+    width: 22px;
+    margin-right: 1px;
+    
+    right: 0.1px;
+    top: 0.3px;
+    color: black;
+    font-size: 20px;
+    font-weight: 0;
 }

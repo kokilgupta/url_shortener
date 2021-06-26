@@ -16,11 +16,10 @@ const url_validation = yup.object().shape({
         .string()
         .required('Enter a url')
         .matches(
-            /((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
+            /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/,
             'Enter correct url!'
         )
 });
-
 const HomePage=()=>{
     const[posts,setPosts]=useState([]);
     const[isLoaded, setIsLoaded] = useState(false);
@@ -70,6 +69,7 @@ const HomePage=()=>{
     }
     return(
         <div>
+           {console.log(env.databaseURL)} 
             <Header />
             <div className={'url-page'}>
                 <div className={'url-form'}>
@@ -95,11 +95,15 @@ const HomePage=()=>{
                         </Form>
                     </Formik>
                 </div>
-                {posts.map((item)=> (
-                    <ul key={item.shortened_url}>
-                        <li>
-                            <div className={''}>
-                                <span>{env.base_url}{item.shortened_url}</span>
+                <div className={'list-parent'}>
+                    {posts.map((item)=> (
+                        <div className={'parent'}>
+                           <div key={item.shortened_url} className={'link_box'}>
+                                <div className={'delete'}>
+                                  <i class="fa fa-times"></i>
+                                </div>
+                                <div className={'links'}>
+                                <span><b>{env.base_url}{item.shortened_url}</b></span>
                                 <CopyToClipboard
                                     text={`${env.base_url}${item.shortened_url}`}
                                     className={'shorten-url'}
@@ -108,10 +112,12 @@ const HomePage=()=>{
                                     <CopyOutlined style={{text:'red'}} />
                                 </CopyToClipboard>
                                 <div>{item.url}</div>
+                                </div>
+                                
                             </div>
-                        </li>
-                    </ul>
-                ))}
+                         </div>
+                        ))}
+                </div>
             </div>
         </div> 
     )

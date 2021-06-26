@@ -6,7 +6,7 @@ const Header = () => {
     const history = useHistory();
     return (
         <div className={'header'} onClick={() => history.push('/')}>
-            Shorten URL
+            Shortly
         </div>
     )
 }
