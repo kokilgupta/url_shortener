@@ -69,7 +69,7 @@ const HomePage=()=>{
     }
     return(
         <div>
-           {console.log(env.databaseURL)} 
+           {/* {console.log(env.databaseURL)}  */}
             <Header />
             <div className={'url-page'}>
                 <div className={'url-form'}>
