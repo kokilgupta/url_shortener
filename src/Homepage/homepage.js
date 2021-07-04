@@ -99,7 +99,7 @@ const HomePage = () => {
                         }}
                     >
                         <Form>
-                            <div className={'url-short-title'}>Enter the url to be shorten</div>
+                            <div className={'url-short-title'}>Enter the url to be shortened</div>
                             <div style={{ display: 'flex', flexDirection: 'row' }}>
                                 <div style={{ display: 'flex', flexDirection: 'column', width: '80%' }}>
                                     <Field name='url' type="text" placeholder={'Enter url'} className={'url-field'} />
